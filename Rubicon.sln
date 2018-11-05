@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon", "Rubicon\Rubicon.csproj", "{71A3C707-C03F-4174-9AB9-838356865080}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon.Tests", "Rubicon.Tests\Rubicon.Tests.csproj", "{35FD4273-8DDA-4832-A39D-F78FCD0C9DBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71A3C707-C03F-4174-9AB9-838356865080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71A3C707-C03F-4174-9AB9-838356865080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71A3C707-C03F-4174-9AB9-838356865080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71A3C707-C03F-4174-9AB9-838356865080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35FD4273-8DDA-4832-A39D-F78FCD0C9DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35FD4273-8DDA-4832-A39D-F78FCD0C9DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35FD4273-8DDA-4832-A39D-F78FCD0C9DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35FD4273-8DDA-4832-A39D-F78FCD0C9DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CD2A095-BA30-41CE-A5CE-76EA8ECFF1C7}
+	EndGlobalSection
+EndGlobal
