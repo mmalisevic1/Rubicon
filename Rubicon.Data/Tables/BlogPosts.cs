@@ -6,6 +6,7 @@ namespace Rubicon.Data.Tables
 {
     public class BlogPosts
     {
+        [Key]
         [MaxLength(300)]
         [NonUnicode]
         [Required]

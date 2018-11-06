@@ -26,12 +26,13 @@ namespace Rubicon.Controllers
             _blogPostService = new BlogPostService(new RubiconContext());
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("posts")]
         public async Task<IHttpActionResult> CreateBlogPost([FromBody]BlogPost blogPost)
         {
-            ModelState[nameof(BlogPost.Slug)].Errors.Clear();
-            ModelState[nameof(BlogPost.CreatedAt)].Errors.Clear();
+            var n = ModelState;
+            ModelState["blogPost.Slug"].Errors.Clear();
+            //ModelState["CreatedAt"].Errors.Clear();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

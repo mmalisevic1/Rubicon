@@ -53,7 +53,23 @@ namespace Rubicon.Services
         {
 
             CreateMap<BlogPost, BlogPosts>()
-                .ForMember(d => d.Slug, opt => opt.ResolveUsing(resolver => new SlugResolver()));
+                .ForMember(d => d.Slug, opt => opt.ResolveUsing<SlugResolver>())
+                .ForMember(d => d.Tags, opt => opt.ResolveUsing(resolver => GetTagsFromArray(resolver.TagList,
+                    SlugResolver.GetSlugFromTitle(resolver.Title))));
+        }
+
+        private static IEnumerable<Tags> GetTagsFromArray(string[] tagArray, string blogPostId)
+        {
+            List<Tags> tags = new List<Tags>();
+            for (int i = 0; i < tagArray.Length; i++)
+            {
+                tags.Add(new Tags
+                {
+                    BlogPostId = blogPostId,
+                    Tag = tagArray[i]
+                });
+            }
+            return tags;
         }
     }
 }

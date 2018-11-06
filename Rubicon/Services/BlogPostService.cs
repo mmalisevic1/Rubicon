@@ -23,6 +23,7 @@ namespace Rubicon.Services
         {
             blogPost.CreatedAt = DateTime.Now;
             blogPost.UpdatedAt = null;
+            var n = Mapper.Map<BlogPost, BlogPosts>(blogPost);
             BlogPosts createdBlogPost = _rubiconContext.BlogPosts.Add(Mapper.Map<BlogPosts>(blogPost));
 
             await _rubiconContext.SaveChangesAsync();
