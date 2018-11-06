@@ -49,63 +49,11 @@ namespace Rubicon.Services
 
     public class BlogPostToBlogPosts : Profile
     {
-        static readonly IList<char> punctuationMarks = new List<char>
-        {
-            '.', '?', '!', ',', ';', ':', '-', '(', ')', '[', ']', '{', '}', '"', '\''
-        };
-
         public BlogPostToBlogPosts()
         {
 
             CreateMap<BlogPost, BlogPosts>()
-                .ForMember(d => d.Slug, opt => opt.ResolveUsing(resolver => GetSlugFromTitle(resolver.Title)));
-        }
-
-        private static string GetSlugFromTitle(string title)
-        {
-            var titleChars = title.SkipWhile(s => char.IsPunctuation(s) || char.IsWhiteSpace(s));
-            var stringBuilder = new StringBuilder();
-            foreach (var letter in titleChars)
-            {
-                stringBuilder.Append(letter);
-            }
-            title = stringBuilder.ToString();
-            string slug = "";
-            bool underscoreSetted = false;
-            foreach (var letter in title)
-            {
-                if (char.IsLetterOrDigit(letter))
-                {
-                    slug += char.ToLowerInvariant(letter);
-                    underscoreSetted = false;
-                }
-                if (char.IsPunctuation(letter))
-                {
-                    continue;
-                }
-                if (char.IsWhiteSpace(letter) && !underscoreSetted)
-                {
-                    slug += '_';
-                    underscoreSetted = true;
-                }
-            }
-            return RemoveDiacritics(slug);
-        }
-
-        private static string RemoveDiacritics(string slug)
-        {
-            var normalizedString = slug.Normalize(NormalizationForm.FormD);
-            var stringBuilder = new StringBuilder();
-            foreach (var letter in normalizedString)
-            {
-                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(letter);
-                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
-                {
-                    stringBuilder.Append(letter);
-                }
-            }
-            return stringBuilder.ToString()
-                                .Normalize(NormalizationForm.FormC);
+                .ForMember(d => d.Slug, opt => opt.ResolveUsing(resolver => new SlugResolver()));
         }
     }
 }
