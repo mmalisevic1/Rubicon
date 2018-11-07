@@ -38,9 +38,13 @@ namespace Rubicon.Services
         {
             if (string.IsNullOrEmpty(tag))
             {
-                return null;
+                return Mapper.Map<IEnumerable<BlogPost>>(_rubiconContext.BlogPosts.OrderByDescending(o =>
+                    o.UpdatedAt ?? o.CreatedAt));
             }
-            return null;
+            return Mapper.Map<IEnumerable<BlogPost>>(_rubiconContext.BlogPosts.Where(w => w.Tags.Select(s => s.Tag)
+                                                                                                .Contains(tag))
+                                                                              .OrderByDescending(o =>
+                                                                                o.UpdatedAt ?? o.CreatedAt));
         }
     }
 }
