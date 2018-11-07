@@ -204,9 +204,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BlogPostService.cs" />
     <Compile Include="Services\IBlogPostService.cs" />
-    <Compile Include="Services\IValueResolver.cs" />
     <Compile Include="Services\MappingConfigurations.cs" />
     <Compile Include="Services\SlugResolver.cs" />
+    <Compile Include="Services\TagArrayResolver.cs" />
+    <Compile Include="Services\TagsResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

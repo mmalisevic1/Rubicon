@@ -23,11 +23,24 @@ namespace Rubicon.Services
         {
             blogPost.CreatedAt = DateTime.Now;
             blogPost.UpdatedAt = null;
-            var n = Mapper.Map<BlogPost, BlogPosts>(blogPost);
             BlogPosts createdBlogPost = _rubiconContext.BlogPosts.Add(Mapper.Map<BlogPosts>(blogPost));
 
             await _rubiconContext.SaveChangesAsync();
             return Mapper.Map<BlogPost>(createdBlogPost);
+        }
+
+        public async Task<BlogPost> GetBlogPostBySlug(string slug)
+        {
+            return Mapper.Map<BlogPost>(await _rubiconContext.BlogPosts.FindAsync(slug));
+        }
+
+        public IEnumerable<BlogPost> GetBlogPosts(string tag)
+        {
+            if (string.IsNullOrEmpty(tag))
+            {
+                return null;
+            }
+            return null;
         }
     }
 }

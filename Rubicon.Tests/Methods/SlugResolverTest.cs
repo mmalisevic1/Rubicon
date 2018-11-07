@@ -7,7 +7,7 @@ namespace Rubicon.Tests.Methods
     public class SlugResolverTest
     {
         [TestMethod]
-        public void TestRemoveDiacritics()
+        public void RemoveDiacritics()
         {
             // Arrange
             string slug1 = "this-that-other-outré-collection";
@@ -27,7 +27,7 @@ namespace Rubicon.Tests.Methods
         }
 
         [TestMethod]
-        public void TestCreatingSlug()
+        public void CreatingSlug()
         {
             // Arrange
             string title1 = "Augmented Reality iOS Application";
