@@ -5,7 +5,6 @@ using Rubicon.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Rubicon.Services
@@ -45,6 +44,32 @@ namespace Rubicon.Services
                                                                                                 .Contains(tag))
                                                                               .OrderByDescending(o =>
                                                                                 o.UpdatedAt ?? o.CreatedAt));
+        }
+
+        public async Task<BlogPost> UpdateBlogPost(string slug, BlogPost blogPost)
+        {
+            BlogPosts existingBlogPost = await _rubiconContext.BlogPosts.FindAsync(slug);
+            if (existingBlogPost == null) {
+                throw new ArgumentException("There is no blog post for the provided slug.");
+            }
+
+            if (!string.IsNullOrEmpty(blogPost.Title))
+            {
+                existingBlogPost.Slug = SlugResolver.GetSlugFromTitle(blogPost.Title);
+                existingBlogPost.Title = blogPost.Title;
+            }
+            if (!string.IsNullOrEmpty(blogPost.Description))
+            {
+                existingBlogPost.Description = blogPost.Description;
+            }
+            if (!string.IsNullOrEmpty(blogPost.Body))
+            {
+                existingBlogPost.Body = blogPost.Body;
+            }
+            existingBlogPost.UpdatedAt = DateTime.Now;
+
+            await _rubiconContext.SaveChangesAsync();
+            return Mapper.Map<BlogPost>(existingBlogPost);
         }
     }
 }

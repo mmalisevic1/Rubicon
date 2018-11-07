@@ -51,5 +51,40 @@ namespace Rubicon.Controllers
         {
             return Ok(await _blogPostService.GetBlogPostBySlug(slug));
         }
+
+        [HttpGet]
+        [Route("posts")]
+        public IHttpActionResult GetBlogPosts([FromUri]string tag = "")
+        {
+            return Ok(_blogPostService.GetBlogPosts(tag));
+        }
+
+        [HttpPatch]
+        [HttpPut]
+        [Route("posts/{slug}")]
+        public async Task<IHttpActionResult> UpdateBlogPost(string slug, [FromBody]BlogPost blogPost)
+        {
+            if (ModelState.Keys.Contains("blogPost.Slug"))
+            {
+                ModelState["blogPost.Slug"].Errors.Clear();
+            }
+            if (ModelState.Keys.Contains("blogPost.Title") && ModelState["blogPost.Title"].Errors.Count < 2)
+            {
+                ModelState["blogPost.Title"].Errors.Clear();
+            }
+            if (ModelState.Keys.Contains("blogPost.Description") && ModelState["blogPost.Description"].Errors.Count < 2)
+            {
+                ModelState["blogPost.Description"].Errors.Clear();
+            }
+            if (ModelState.Keys.Contains("blogPost.Body"))
+            {
+                ModelState["blogPost.Body"].Errors.Clear();
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(await _blogPostService.UpdateBlogPost(slug, blogPost));
+        }
     }
 }
