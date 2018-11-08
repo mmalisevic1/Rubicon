@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201811062208270_InitialCreate.Designer.cs">
       <DependentUpon>201811062208270_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811080739538_Fixing_primary_key_BLogPOst.cs" />
+    <Compile Include="Migrations\201811080739538_Fixing_primary_key_BLogPOst.Designer.cs">
+      <DependentUpon>201811080739538_Fixing_primary_key_BLogPOst.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NonUnicodeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +104,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811062208270_InitialCreate.resx">
       <DependentUpon>201811062208270_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811080739538_Fixing_primary_key_BLogPOst.resx">
+      <DependentUpon>201811080739538_Fixing_primary_key_BLogPOst.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

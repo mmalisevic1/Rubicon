@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rubicon.Data.Tables
 {
     public class BlogPosts
     {
         [Key]
+        public long Id { get; set; }
+
         [MaxLength(300)]
         [NonUnicode]
         [Required]
+        [Index(IsUnique = true)]
         public string Slug { get; set; }
 
         [MaxLength(300)]

@@ -4,6 +4,7 @@ using Rubicon.Data.Tables;
 using Rubicon.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,7 +31,7 @@ namespace Rubicon.Services
 
         public async Task<BlogPost> GetBlogPostBySlug(string slug)
         {
-            return Mapper.Map<BlogPost>(await _rubiconContext.BlogPosts.FindAsync(slug));
+            return Mapper.Map<BlogPost>(await _rubiconContext.BlogPosts.FirstOrDefaultAsync(f => f.Slug == slug));
         }
 
         public IEnumerable<BlogPost> GetBlogPosts(string tag)
@@ -48,7 +49,7 @@ namespace Rubicon.Services
 
         public async Task<BlogPost> UpdateBlogPost(string slug, BlogPost blogPost)
         {
-            BlogPosts existingBlogPost = await _rubiconContext.BlogPosts.FindAsync(slug);
+            BlogPosts existingBlogPost = await _rubiconContext.BlogPosts.FirstOrDefaultAsync(f => f.Slug == slug);
             if (existingBlogPost == null) {
                 throw new ArgumentException("There is no blog post for the provided slug.");
             }
@@ -70,6 +71,18 @@ namespace Rubicon.Services
 
             await _rubiconContext.SaveChangesAsync();
             return Mapper.Map<BlogPost>(existingBlogPost);
+        }
+
+        public async Task DeleteBlogPost(string slug)
+        {
+            BlogPosts existingBlogPost = await _rubiconContext.BlogPosts.FirstOrDefaultAsync(f => f.Slug == slug);
+            if (existingBlogPost == null) {
+                throw new ArgumentException("There is no blog post for the provided slug.");
+            }
+
+            _rubiconContext.BlogPosts.Remove(existingBlogPost);
+
+            await _rubiconContext.SaveChangesAsync();
         }
     }
 }

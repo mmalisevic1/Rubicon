@@ -84,7 +84,29 @@ namespace Rubicon.Controllers
             {
                 return BadRequest(ModelState);
             }
-            return Ok(await _blogPostService.UpdateBlogPost(slug, blogPost));
+            try
+            {
+                return Ok(await _blogPostService.UpdateBlogPost(slug, blogPost));
+            }
+            catch (ArgumentException)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpDelete]
+        [Route("posts/{slug}")]
+        public async Task<IHttpActionResult> DeleteBlogPost(string slug)
+        {
+            try
+            {
+                await _blogPostService.DeleteBlogPost(slug);
+                return Ok();
+            }
+            catch (ArgumentException)
+            {
+                return NotFound();
+            }
         }
     }
 }

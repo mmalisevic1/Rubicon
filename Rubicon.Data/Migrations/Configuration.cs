@@ -2,6 +2,7 @@ namespace Rubicon.Data.Migrations
 {
     using Rubicon.Data.Tables;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Rubicon.Data.RubiconContext>
@@ -22,7 +23,12 @@ namespace Rubicon.Data.Migrations
                     Description = "Rubicon Software Development and Gazzda furniture are proud to launch an augmented reality app.",
                     Body = "The app is simple to use, and will help you decide on your best furniture fit.",
                     CreatedAt = new DateTime(2018, 5, 18, 3, 22, 56, 637),
-                    UpdatedAt = new DateTime(2018, 5, 18, 3, 48, 35, 824)
+                    UpdatedAt = new DateTime(2018, 5, 18, 3, 48, 35, 824),
+                    Tags = new List<Tags>
+                    {
+                        new Tags { Tag = "iOS" },
+                        new Tags { Tag = "AR" },
+                    }
                 },
                 new BlogPosts
                 {
@@ -30,14 +36,14 @@ namespace Rubicon.Data.Migrations
                     Title = "Augmented Reality iOS Application 2",
                     Description = "Rubicon Software Development and Gazzda furniture are proud to launch an augmented reality app.",
                     Body = "The app is simple to use, and will help you decide on your best furniture fit.",
-                    CreatedAt = new DateTime(2018, 6, 18, 3, 22, 56, 637)
+                    CreatedAt = new DateTime(2018, 6, 18, 3, 22, 56, 637),
+                    Tags = new List<Tags>
+                    {
+                        new Tags { Tag = "iOS" },
+                        new Tags { Tag = "AR" },
+                        new Tags { Tag = "Gazzda" }
+                    }
                 });
-            context.Tags.AddOrUpdate(identifierExpression => identifierExpression.Id,
-                new Tags { BlogPostId = "augmented_reality_ios_application", Tag = "iOS" },
-                new Tags { BlogPostId = "augmented_reality_ios_application", Tag = "AR" },
-                new Tags { BlogPostId = "augmented_reality_ios_application_2", Tag = "iOS" },
-                new Tags { BlogPostId = "augmented_reality_ios_application_2", Tag = "AR" },
-                new Tags { BlogPostId = "augmented_reality_ios_application_2", Tag = "Gazzda" });
         }
     }
 }

@@ -9,10 +9,10 @@ namespace Rubicon.Services
     {
         public ICollection<Tags> Resolve(BlogPost source, BlogPosts destination, ICollection<Tags> destMember, ResolutionContext context)
         {
-            return CreateTagsFromTagArray(source.TagList, source.Slug);
+            return CreateTagsFromTagArray(source.TagList, source.Id);
         }
 
-        public static ICollection<Tags> CreateTagsFromTagArray(string[] tagArray, string blogPostId)
+        public static ICollection<Tags> CreateTagsFromTagArray(string[] tagArray, long blogPostId)
         {
             List<Tags> tags = new List<Tags>();
             for (int i = 0; i < tagArray.Length; i++)

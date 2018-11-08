@@ -13,5 +13,7 @@ namespace Rubicon.Services
         IEnumerable<BlogPost> GetBlogPosts(string tag);
 
         Task<BlogPost> UpdateBlogPost(string slug, BlogPost blogPost);
+
+        Task DeleteBlogPost(string slug);
     }
 }

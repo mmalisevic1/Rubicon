@@ -5,6 +5,8 @@ namespace Rubicon.Models
 {
     public class BlogPost
     {
+        public long Id { get; set; }
+
         [Required]
         public string Slug { get; set; }
 

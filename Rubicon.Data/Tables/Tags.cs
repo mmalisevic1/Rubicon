@@ -9,10 +9,7 @@ namespace Rubicon.Data.Tables
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
-        [MaxLength(300)]
-        [NonUnicode]
-        [Required]
-        public string BlogPostId { get; set; }
+        public long BlogPostId { get; set; }
 
         [MaxLength(200)]
         [Required]
