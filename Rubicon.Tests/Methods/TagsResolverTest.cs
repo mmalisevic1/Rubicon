@@ -15,28 +15,28 @@ namespace Rubicon.Tests.Methods
         {
             // Arrange
             string[] tagArray = new string[] { "iOS", "AR", "Gazzda" };
-            string slug = "augmented_reality_ios_application_2";
+            long blogPostId = 2;
             List<Tags> expectedTags = new List<Tags>
             {
                 new Tags
                 {
-                    BlogPostId = slug,
+                    BlogPostId = blogPostId,
                     Tag = tagArray[0]
                 },
                 new Tags
                 {
-                    BlogPostId = slug,
+                    BlogPostId = blogPostId,
                     Tag = tagArray[1]
                 },
                 new Tags
                 {
-                    BlogPostId = slug,
+                    BlogPostId = blogPostId,
                     Tag = tagArray[2]
                 }
             };
 
             // Act
-            var result = TagsResolver.CreateTagsFromTagArray(tagArray, slug);
+            var result = TagsResolver.CreateTagsFromTagArray(tagArray, blogPostId);
 
             // Assert
             Assert.IsNotNull(result);
@@ -53,10 +53,10 @@ namespace Rubicon.Tests.Methods
         {
             // Arrange
             string[] tagArray = new string[] {};
-            string slug = "augmented_reality_ios_application_2";
+            long blogPostId = 2;
 
             // Act
-            var result = TagsResolver.CreateTagsFromTagArray(tagArray, slug);
+            var result = TagsResolver.CreateTagsFromTagArray(tagArray, blogPostId);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(ICollection<Tags>));

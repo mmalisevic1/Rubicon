@@ -9,7 +9,9 @@ namespace Rubicon.Services
     {
         public ICollection<Tags> Resolve(BlogPost source, BlogPosts destination, ICollection<Tags> destMember, ResolutionContext context)
         {
-            return CreateTagsFromTagArray(source.TagList, source.Id);
+            // Onlz used in case of creating Blog post with Tags
+            // That is whz the blogPostId is 0
+            return CreateTagsFromTagArray(source.TagList, 0);
         }
 
         public static ICollection<Tags> CreateTagsFromTagArray(string[] tagArray, long blogPostId)
