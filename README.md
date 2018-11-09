@@ -10,3 +10,12 @@ Update-Database
 ```
 * Collection of all requests availible for this Web API is provided in this link: https://www.getpostman.com/collections/1663d3ccc7dc68129818
 * This product is tested using both Unit tests and POSTMAN
+
+# Important
+It is possible, after building and running the project for the first time to get following error or similar:
+`Could not find a part of the path...roslyn\csc.exe`
+The solution is to:
+* Rebuild the project
+* Run it again
+
+This did not happen on my local machine, but I did notice it happen on some other machines
